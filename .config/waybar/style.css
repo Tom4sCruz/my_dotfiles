@@ -73,6 +73,7 @@ button.empty {
 #tray {
   margin: 0 2px;
   padding: 0 5px;
+  background-color: transparent;
 	color: #334147;
 }
 
@@ -101,27 +102,14 @@ button.empty {
 }
 
 #battery.charging, #battery.plugged {
-	background-color: #0ce1cc;
-	color: #334147;
   font-weight: bold;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+	color: #3887e9;
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f67b55;
-    color: #334147;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  font-weight: bold;  
+  color: #ca3834;
 }
 
 label:focus {
