@@ -1,0 +1,55 @@
+window {
+    margin: 0px;
+    border: 2px solid #9ba6aa;
+    background-color: rgba(24, 28, 29, 0.95);
+    border-radius: 5px;
+    font-family: "Blex Mono Nerd Font", monospace;
+}
+
+#input {
+    margin: 8px;
+    border: none;
+    color: #aab3b7;
+    background-color: rgba(72, 84, 86, 0.9);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+#inner-box {
+    margin: 8px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 8px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+}
+
+#text {
+    margin: 0px;
+    border: none;
+    padding: 6px 12px;
+    color: #aab3b7;
+}
+
+#text:selected {
+    background-color: #9ba6aa;
+    border-radius: 8px;
+    border: none;
+    margin: 0px;
+    color: #334147;
+}
+
+#entry:selected {
+    background-color: #9ba6aa;
+    border-radius: 8px;
+    border: none;
+    margin: 0px;
+}
+

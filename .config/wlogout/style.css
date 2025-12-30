@@ -1,0 +1,55 @@
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	background-color: rgba(12, 12, 12, 0.9);
+}
+
+button {
+	border-radius: 2px;
+	border-color: #14161a;
+	text-decoration-color: #FFFFFF;
+	color: #9ba6aa;
+	background-color: #14161a;
+	border-style: solid;
+	border-width: 2px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+	margin: 150px 5px;
+}
+
+button:focus, button:active, button:hover {
+	border-color: #9ba6aa;
+	background-color: #22262D;
+}
+
+#lock {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/lock.png"), url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#sleep {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/sleep.png"), url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/logout.png"), url("/usr/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/suspend.png"), url("/usr/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/hibernate.png"), url("/usr/share/wlogout/icons/hibernate.png"));
+}
+
+#shutdown {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/power.png"), url("/usr/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/home/tomas/.config/wlogout/icons/reboot.png"), url("/usr/share/wlogout/icons/reboot.png"));
+}
