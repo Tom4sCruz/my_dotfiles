@@ -4,12 +4,12 @@
 }
 
 window {
-	background-color: rgba(12, 12, 12, 0.9);
+	background-color: rgba(24, 28, 29, 0.7);
 }
 
 button {
-	border-radius: 2px;
-	border-color: #14161a;
+	border-radius: 5px;
+	border-color: #181c1d;
 	text-decoration-color: #FFFFFF;
 	color: #9ba6aa;
 	background-color: #14161a;
@@ -18,7 +18,7 @@ button {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 25%;
-	margin: 150px 5px;
+	margin-left: 1500px;
 }
 
 button:focus, button:active, button:hover {

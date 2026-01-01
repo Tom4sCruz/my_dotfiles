@@ -42,7 +42,7 @@
       "format-off": "BT-off",
       "format-disabled": "󰂲",
       "format-connected-battery": "{device_battery_percentage}% 󰂯",
-      "format-alt": "{device_alias} 󰂯",
+      "format-alt": "{{device_alias} } 󰂯",
       "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
@@ -77,7 +77,6 @@
         },
         "on-click": "pavucontrol"
     },
-    // DEFAULT
 
    "cpu": {
         "format": "{usage}% ",
@@ -86,6 +85,12 @@
     "memory": {
         "format": "{}% "
     },
+    
+    "group/stats": {
+    "orientation": "horizontal",
+    "modules": ["temperature", "custom/sep", "cpu", "custom/sep", "memory"]
+  },
+
     "temperature": {
         "critical-threshold": 80,
         "format": "{temperatureC}°C {icon}",

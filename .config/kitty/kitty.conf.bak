@@ -1,0 +1,46 @@
+# Font
+font_family BlexMono Nerd Font # This uses the IBM Plex Mono Nerd Font
+font_size 13
+
+# Cursor
+cursor_shape block 
+cursor_shape_unfocused hollow
+
+# Background
+background #14161a
+
+##############
+### Colors ###
+##############
+
+# black
+color0 #334147
+color8 #334147
+
+# red (error / failure)
+color1 #F54456
+color9 #F54456
+
+#green (secondary / success)
+color2 #0E
+color10 #02c1d7
+
+# yellow (caution / warning)
+color3 #F6B45D
+color11 #F6B45D
+
+# blue (primary / keyword)
+color4 #607685
+color12 #607685
+
+# magenta (muted text)
+color5 #3c5155
+color13 #3C5155
+
+# cyan (secondary / info)
+color6 #F8FAF8
+color14 #F8FAF8
+
+# white (foreground / normal_text)
+color7 #9ba6aa
+color15 #9ba6aa

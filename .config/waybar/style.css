@@ -15,7 +15,6 @@ window#waybar {
 
 /* MODULES (Left, Center, Right)*/
 
-.modules-left,
 .modules-center,
 .modules-right {
   margin: 5px 5px 0px 5px;
@@ -23,11 +22,13 @@ window#waybar {
   background-color: #9ba6aa;
 }
 
-.modules-right {
-
-}
-
 /* WORKSPACES (button)*/
+
+#workspaces {
+  margin: 5px 5px 0px 5px;
+  padding: 2px;
+  background-color: #9ba6aa;
+}
 
 button {
   background-color: transparent;
@@ -61,10 +62,6 @@ button.empty {
 }
 
 #battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
 #backlight,
 #network,
 #bluetooth,
@@ -78,10 +75,6 @@ button.empty {
 }
 
 #battery:hover,
-#cpu:hover,
-#memory:hover,
-#disk:hover,
-#temperature:hover,
 #backlight:hover,
 #network:hover,
 #bluetooth:hover,
@@ -97,8 +90,19 @@ button.empty {
   margin: 0 5px;
 }
 
-#window,
-#workspaces {
+#group-stats {
+  margin: 5px 5px 0px 5px;
+  padding: 2px;
+  background: rgba(255, 0, 0, 1);
+}
+
+#temperature,
+#cpu,
+#memory {
+  margin: 0 2px;
+  padding: 0 5px;
+  background-color: transparent;
+  color: #334147;
 }
 
 #battery.charging, #battery.plugged {
@@ -116,25 +120,9 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu,
-#memory,
-#disk {
-    background-color: #9ba6aa;
-    color: #334147;
-}
-
-#backlight {
-}
-
-#network {
-}
-
 #network.disconnected {
     background-color: #3c5155;
     color: #9ba6aa;
-}
-
-#pulseaudio {
 }
 
 #pulseaudio:hover {
@@ -145,8 +133,6 @@ label:focus {
     background-color: #334147;
     color: #9ba6aa;
 }
-
-/* DEFAULT */
 
 #custom-media {
     background-color: #66cc99;
@@ -161,12 +147,8 @@ label:focus {
     background-color: #ffa000;
 }
 
-#temperature {
-    background-color: #f0932b;
-}
-
 #temperature.critical {
-    background-color: #eb4d4b;
+    color: #ca3834;
 }
 
 #tray {
