@@ -1,0 +1,53 @@
+[global]
+
+  monitor = 0
+  follow = none
+
+  width = 300
+  height = (0, 300)
+
+  origin = top-right
+
+  offset = (5, 15)
+  scale = 0
+
+  gap_size = 6
+ 
+  frame_width = 2
+  corner_radius = 5
+
+  notification_limit = 0
+
+  progress_bar = true
+
+  progress_bar_height = 6
+
+  progress_bar_frame_width = 0
+  
+  progress_bar_radius = 5
+  progress_bar_corners = all
+
+  history_length = yes
+
+  mouse_left_click = close_current
+  mouse_right_click = close_all
+
+[urgency_low]
+  frame_color = "#627175"
+  foreground = "#627175"
+  background = "#141718"
+  timeout = 6
+
+[urgency_normal]
+  frame_color = "#9ba6aa"
+  foreground = "#9ba6aa"
+  background = "#181c1d"
+  timeout = 8
+  override_pause_level = 30
+
+[urgency_critical]
+  frame_color = "#ca3834"
+  foreground = "#ca3834"
+  background = "#141718"
+  timeout = 10
+  override_pause_level = 60

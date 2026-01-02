@@ -43,6 +43,10 @@ button:hover {
   font-size: 17px;
 }
 
+button.visible {
+  background-color: rgba(51, 65, 71, 0.35);
+}
+
 button.active {
   background-color: #334147;
   color: #9ba6aa;
