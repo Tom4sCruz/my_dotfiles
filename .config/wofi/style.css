@@ -53,3 +53,10 @@ window {
     margin: 0px;
 }
 
+expander > list > #entry:selected {
+  background-color: #262C2E;
+  border-radius: 8px;
+  border: none;
+  margin: 0px;
+  color: #334147;
+}

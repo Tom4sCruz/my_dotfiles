@@ -15,9 +15,7 @@ swaylock -f --color 14161a \
   --separator-color f8faf8 \
   --bs-hl-color 3c5155 \
   --line-color 14161a \
-  --screenshots \
   --clock \
   --timestr %H:%M \
   --datestr %x \
-  --text-color 9ba6aa \
-  --effect-blur 10x5
+  --text-color 9ba6aa

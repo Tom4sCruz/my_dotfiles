@@ -3,3 +3,4 @@ height=400
 location=center
 show=drun
 prompt=Search
+key_expand=space
