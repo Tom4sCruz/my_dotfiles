@@ -5,29 +5,21 @@
     "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "custom/sep", "network", "custom/sep", "bluetooth", "custom/sep", 
-                      "pulseaudio", "custom/sep", 
-                      "backlight", "custom/sep",
-                      "battery"],
+    "modules-right": ["pulseaudio", "network", "battery"],
 
     "hyprland/workspaces": {
     },
 
-    "custom/sep": {
-      "format": "|",
-      "tooltip": false,
-    },
-
     "clock": {
-      "format": "{:%H:%M | %d-%m}",
+      "format": "{:%b %d  %H:%M}",
       "interval": 60,
-      "tooltip-format": "<tt>{calendar}</tt>",
+      "tooltip-format": "<tt>{calendar}</tt>"
     },
 
     "network": {
-      "format-wifi": "{signalStrength}%  ",
+      "format-wifi": "󰖩 {signalStrength}%",
       "format-ethernet": "",
-      "format-disconnected": "",
+      "format-disconnected": " 0%",
       
       "tooltip-format-wifi": "{essid} ({signalStrength}%)",
       "tooltip-format-disconnected": "Disconnected",
@@ -45,25 +37,27 @@
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
       "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-      "on-click": "blueman-manager",
+      "on-click": "blueman-manager"
     },
 
     "battery": {
       "interval":5,
       "states": {
-        "critical": 20
+	"low": 20,
+        "critical": 10
       },
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% 󰂄",
-      "format-plugged": "{capacity}% 󰂄",
+      "format": "{icon} {capacity}%",
+      "format-critical": "󰂃 {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󰂄 {capacity}%",
       "tooltip-format": "{time}",
-      "format-icons": ["󰁻","󰁼","󰁾","󰂀","󰂂","󰁹"],
+      "format-icons": ["󱊡","󱊢", "󱊣"]
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-bluetooth-muted": "  {icon}",
-        "format-muted": " ",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "󰝟 {icon} 0%",
+        "format-muted": "󰝟 0%",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -71,7 +65,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": ["󰖀","󰕾"]
         },
         "on-click": "pavucontrol"
     },

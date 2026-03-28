@@ -2,5 +2,6 @@ width=500
 height=400
 location=center
 show=drun
-prompt=Search
+prompt=Search...
 key_expand=space
+use_search_box=false

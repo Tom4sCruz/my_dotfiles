@@ -1,25 +1,25 @@
 {
     "label" : "sleep",
     "action" : "/home/tomas/.local/bin/lock & systemctl suspend",
-    "text" : "",
+    "text" : "[SLEEP]",
     "keybind" : "s"
 }
 {
     "label" : "reboot",
     "action" : "systemctl reboot",
-    "text" : "",
+    "text" : "[REBOOT]",
     "keybind" : "r"
 }
 {
     "label" : "shutdown",
     "action" : "systemctl poweroff",
-    "text" : "",
+    "text" : "[POWER OFF]",
     "keybind" : "p"
 }
 {
     "label" : "logout",
     "action" : "loginctl terminate-user $USER",
-    "text" : "",
+    "text" : "[LOGOUT]",
     "keybind" : "l"
 }
 

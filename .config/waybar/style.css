@@ -1,81 +1,70 @@
 * {
-    font-family: "Blex Mono Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-family: "Blex Mono Nerd Font";
+    font-size: 14px;
     min-height: 0;
-    border-radius: 5px;
+    border-radius: 0px;
     padding: 0px;
     margin: 0px;
+    font-weight: 600;
 }
 
 /* WINDOW (Bar itself)*/
 
 window#waybar {
-	background-color: transparent;
+	background-color: #151515;
 }
 
 /* MODULES (Left, Center, Right)*/
 
 .modules-center,
 .modules-right {
-  margin: 5px 5px 0px 5px;
-  padding: 2px;
-  background-color: #9ba6aa;
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
 }
 
 /* WORKSPACES (button)*/
 
 #workspaces {
-  margin: 5px 5px 0px 5px;
-  padding: 2px;
-  background-color: #9ba6aa;
+  margin: 0px;
+  padding: 0px;
+  background: transparent;
 }
 
 button {
-  background-color: transparent;
-  color: #334147;
-  font-weight: bold;
-  font-size: 13px;
+  background-color: #151515;
+  color: #f2f2f2;
 }
 
 button:hover {
-  background-color: #f8faf8;
-  color: #334147;
-  font-size: 17px;
+  color: #ffffff;
+  background-color: #5c5c5c;
 }
 
 button.visible {
-  background-color: rgba(51, 65, 71, 0.35);
+  color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  background: transparent;
+
 }
 
 button.active {
-  background-color: #334147;
-  color: #9ba6aa;
-}
-
-button.empty {
-  font-weight: normal;
+  background-color: #f2f2f2;
+  color: #151515;
 }
 
 /* MODULES (Individuals) */
 
-#custom-sep {
-  margin: 0;
-  padding: 0;
-  color: #334147;
-  font-size: 13px;
-}
-
 #battery,
-#backlight,
 #network,
 #bluetooth,
 #pulseaudio,
 #custom-media,
 #tray {
-  margin: 0 2px;
-  padding: 0 5px;
+  margin: 0px;
+  padding: 0px 10px 0px 10px;
   background-color: transparent;
-	color: #334147;
+  color: #f2f2f2;
 }
 
 #battery:hover,
@@ -85,62 +74,40 @@ button.empty {
 #pulseaudio:hover,
 #custom-media:hover,
 #tray:hover {
-	background-color: #f8faf8;
+	color: #151515;
+	background-color: #f2f2f2;
 }
 
 #clock {
-  font-weight: bold;
-	color: #334147;
-  margin: 0 5px;
-}
-
-#group-stats {
-  margin: 5px 5px 0px 5px;
-  padding: 2px;
-  background: rgba(255, 0, 0, 1);
-}
-
-#temperature,
-#cpu,
-#memory {
-  margin: 0 2px;
-  padding: 0 5px;
-  background-color: transparent;
-  color: #334147;
+  color: #f2f2f2;
+  margin: 0 0px;
 }
 
 #battery.charging, #battery.plugged {
-  font-weight: bold;
-	color: #3887e9;
+	color: #07dcc7;
+}
+
+#battery.low:not(.charging){
+ color: #d91e58;
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
+@keyframes blink-batt {
+	0% { color: #d91e58; background: transparent;}
+	50% { color: #f2f2f2; background: #d91e58;}
+	100% { color: #d91e58; background: transparent;}
+}
 #battery.critical:not(.charging) {
-  font-weight: bold;  
-  color: #ca3834;
+  animation-name: blink-batt;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(2);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-label:focus {
-    background-color: #000000;
-}
-
+#pulseaudio.muted,
 #network.disconnected {
-    background-color: #3c5155;
-    color: #9ba6aa;
-}
-
-#pulseaudio:hover {
-    background-color: #f8faf8;
-}
-
-#pulseaudio.muted {
-    background-color: #334147;
-    color: #9ba6aa;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
+    color: #f75806;
 }
 
 #custom-media.custom-spotify {
@@ -151,19 +118,12 @@ label:focus {
     background-color: #ffa000;
 }
 
-#temperature.critical {
-    color: #ca3834;
-}
-
-#tray {
-}
-
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: #d91e58;
 }
 

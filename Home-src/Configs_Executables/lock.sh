@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
-swaylock -f --color 14161a \
+swaylock -f --color 151515 \
   --indicator-idle-visible -l \
-  --indicator-radius 100 --inside-color 14161a \
-  --indicator-thickness 15 \
-  --ring-color 9ba6aa \
-  --inside-ver-color 9ba6aa \
-  --ring-ver-color 9ba6aa \
-  --inside-wrong-color f67b55 \
-  --ring-wrong-color f67b55 \
-  --inside-clear-color 9ba6aa \
-  --ring-clear-color 9ba6aa \
-  --key-hl-color f8faf8 \
-  --separator-color f8faf8 \
-  --bs-hl-color 3c5155 \
-  --line-color 14161a \
+  --indicator-radius 100 --inside-color 151515 \
+  --indicator-thickness 7 \
+  --ring-color 101010 \
+  --inside-ver-color 98f329 \
+  --ring-ver-color 151515 \
+  --inside-wrong-color d91e58 \
+  --ring-wrong-color 151515 \
+  --inside-clear-color f2f2f2 \
+  --ring-clear-color 151515 \
+  --key-hl-color 98f329 \
+  --separator-color 101010 \
+  --bs-hl-color d91e58 \
+  --line-color 151515 \
   --clock \
   --timestr %H:%M \
   --datestr %x \
-  --text-color 9ba6aa
+  --text-color f2f2f2
