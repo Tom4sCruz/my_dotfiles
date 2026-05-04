@@ -1,5 +1,5 @@
 * {
-    font-family: "Blex Mono Nerd Font";
+    font-family: "RobotoMono Nerd Font";
     font-size: 14px;
     min-height: 0;
     border-radius: 0px;
@@ -81,6 +81,10 @@ button.active {
 #clock {
   color: #f2f2f2;
   margin: 0 0px;
+}
+
+#pulseaudio.bluetooth {
+  color: #0866ee
 }
 
 #battery.charging, #battery.plugged {
