@@ -70,7 +70,6 @@ button.active {
 #battery:hover,
 #backlight:hover,
 #network:hover,
-#bluetooth:hover,
 #pulseaudio:hover,
 #custom-media:hover,
 #tray:hover {
@@ -84,7 +83,16 @@ button.active {
 }
 
 #pulseaudio.bluetooth {
-  color: #0866ee
+  color: #0866ee;
+}
+
+#bluetooth {
+  color: #0866ee;
+}
+
+#bluetooth:hover {
+  color: #0866ee;
+  background-color: #f2f2f2;
 }
 
 #battery.charging, #battery.plugged {
