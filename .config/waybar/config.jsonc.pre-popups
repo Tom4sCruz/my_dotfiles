@@ -1,0 +1,119 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["bluetooth", "pulseaudio", "network", "battery"],
+
+    "hyprland/workspaces": {
+    },
+
+    "clock": {
+      "format": "{:%b %d  %H:%M}",
+      "interval": 60,
+      "tooltip-format": "<tt>{calendar}</tt>"
+    },
+
+    "network": {
+      "format-wifi": "󰖩 {signalStrength}%",
+      "format-ethernet": "",
+      "format-disconnected": " 0%",
+      
+      "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+      "tooltip-format-disconnected": "Disconnected",
+      "tooltip-format-ethernet": "{ifname}",
+      "on-click": "nm-connection-editor &"
+    },
+
+    "bluetooth": {
+      "format-on": "",
+      "format-off": "",
+      "format-disabled": "",
+      "format-connected-battery": "󰂯 {device_battery_percentage}%",
+      "format-alt": "{{device_alias} } 󰂯",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+      "on-click": "blueman-manager"
+    },
+
+    "battery": {
+      "interval":5,
+      "states": {
+	"low": 20,
+        "critical": 10
+      },
+      "format": "{icon} {capacity}%",
+      "format-critical": "󰂃 {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󰂄 {capacity}%",
+      "tooltip-format": "{time}",
+      "format-icons": ["󱊡","󱊢", "󱊣"]
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "󰝟 {icon} 0%",
+        "format-muted": "󰝟 0%",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰖀","󰕾"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+   "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    
+    "group/stats": {
+    "orientation": "horizontal",
+    "modules": ["temperature", "custom/sep", "cpu", "custom/sep", "memory"]
+  },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		},
+	"on-click": "wlogout"
+    }
+}

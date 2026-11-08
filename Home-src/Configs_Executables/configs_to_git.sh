@@ -3,7 +3,7 @@
 cd ~/src/Personal/my_dotfiles
 
 # Copy configs
-for dir in hypr kitty waybar wlogout wofi dunst; do
+for dir in hypr kitty waybar wlogout wofi dunst quickshell; do
   cp -r ~/.config/"$dir" ./.config/
 done
 

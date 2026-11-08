@@ -1,6 +1,6 @@
 {
     "label" : "sleep",
-    "action" : "/home/tomas/.local/bin/lock & systemctl suspend",
+    "action" : "hyprlock & systemctl suspend",
     "text" : "[SLEEP]",
     "keybind" : "s"
 }

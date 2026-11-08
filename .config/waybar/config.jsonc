@@ -13,7 +13,8 @@
     "clock": {
       "format": "{:%b %d  %H:%M}",
       "interval": 60,
-      "tooltip-format": "<tt>{calendar}</tt>"
+      "tooltip": false,
+      "on-click": "qs ipc call popups toggle calendar"
     },
 
     "network": {
@@ -24,7 +25,8 @@
       "tooltip-format-wifi": "{essid} ({signalStrength}%)",
       "tooltip-format-disconnected": "Disconnected",
       "tooltip-format-ethernet": "{ifname}",
-      "on-click": "nm-connection-editor &"
+      "on-click": "qs ipc call popups toggle wifi",
+      "on-click-right": "nm-connection-editor &"
     },
 
     "bluetooth": {
@@ -67,7 +69,8 @@
             "car": "",
             "default": ["󰖀","󰕾"]
         },
-        "on-click": "pavucontrol"
+        "on-click": "qs ipc call popups toggle audio",
+        "on-click-right": "pavucontrol"
     },
 
    "cpu": {
