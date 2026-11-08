@@ -223,9 +223,40 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:mag
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
--- [Custom] Cycle through the open workspaces of the focused monitor
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "m-1" }))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "m+1" }))
+-- [Custom] Previous / next workspace on the focused monitor, like the 3-finger swipe:
+-- leftmost + left = stay, rightmost + right = new workspace (unless it's already empty)
+local function workspace_step(dir)
+	return function()
+		local cur = hl.get_active_workspace()
+		if not cur or not cur.monitor then
+			return
+		end
+		local ids = {}
+		for _, w in ipairs(hl.get_workspaces()) do
+			if not w.special and w.id and w.id > 0 and w.monitor and w.monitor.id == cur.monitor.id then
+				table.insert(ids, w.id)
+			end
+		end
+		table.sort(ids)
+		local i = 1
+		for k, id in ipairs(ids) do
+			if id == cur.id then
+				i = k
+			end
+		end
+		if dir < 0 then
+			if i > 1 then
+				hl.dispatch(hl.dsp.focus({ workspace = ids[i - 1] }))
+			end
+		elseif i < #ids then
+			hl.dispatch(hl.dsp.focus({ workspace = ids[i + 1] }))
+		elseif cur.windows > 0 then
+			hl.dispatch(hl.dsp.focus({ workspace = "emptynm" }))
+		end
+	end
+end
+hl.bind(mainMod .. " + CTRL + left", workspace_step(-1))
+hl.bind(mainMod .. " + CTRL + right", workspace_step(1))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })

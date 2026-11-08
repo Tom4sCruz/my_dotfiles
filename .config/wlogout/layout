@@ -1,6 +1,6 @@
 {
     "label" : "sleep",
-    "action" : "hyprlock & systemctl suspend",
+    "action" : "loginctl lock-session && systemctl suspend",
     "text" : "[SLEEP]",
     "keybind" : "s"
 }

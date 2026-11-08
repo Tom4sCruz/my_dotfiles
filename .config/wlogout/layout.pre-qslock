@@ -1,0 +1,25 @@
+{
+    "label" : "sleep",
+    "action" : "hyprlock & systemctl suspend",
+    "text" : "[SLEEP]",
+    "keybind" : "s"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "[REBOOT]",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "[POWER OFF]",
+    "keybind" : "p"
+}
+{
+    "label" : "logout",
+    "action" : "loginctl terminate-user $USER",
+    "text" : "[LOGOUT]",
+    "keybind" : "l"
+}
+
