@@ -16,14 +16,11 @@ Rectangle {
         visible: false
         focus: true
         echoMode: TextInput.Password
-        readOnly: root.lock.status === "auth"
-        onTextChanged: {
-            if (text !== root.lock.password) root.lock.password = text;
-            if (text !== "" && root.lock.status === "failed") root.lock.status = "";
-        }
+        readOnly: root.lock.status !== ""
+        onTextChanged: if (text !== root.lock.password) root.lock.password = text
         Keys.onReturnPressed: root.lock.submit()
         Keys.onEnterPressed: root.lock.submit()
-        Keys.onEscapePressed: root.lock.password = ""
+        Keys.onEscapePressed: if (root.lock.status === "") root.lock.password = ""
     }
     Connections {
         target: root.lock
@@ -31,7 +28,14 @@ Rectangle {
             if (input.text !== root.lock.password) input.text = root.lock.password;
             root.syncGlyphs();
         }
-        function onStatusChanged() { if (root.lock.status === "failed") shake.restart(); }
+        function onStatusChanged() {
+            if (root.lock.status === "failed") {
+                failBlink.restart();
+            } else {
+                failBlink.stop();
+                field.inverted = false;
+            }
+        }
     }
 
     ListModel { id: glyphs }
@@ -55,7 +59,7 @@ Rectangle {
             font.weight: Font.Bold
         }
         Text {
-            text: Qt.formatDateTime(clock.date, "dddd, dd MMMM")
+            text: Qt.formatDateTime(clock.date, "dddd, dd MMMM yyyy")
             color: Theme.dim
             font.family: Theme.font
             font.pixelSize: 28
@@ -63,76 +67,54 @@ Rectangle {
             Layout.leftMargin: 8
             Layout.topMargin: -10
         }
+    }
 
-        // terminal-style prompt
-        Item {
-            id: prompt
-            Layout.topMargin: 48
-            Layout.leftMargin: 8
-            implicitWidth: line.width
-            implicitHeight: promptRow.height + 8 + line.height
+    // password field: vertical bar on the right, glyphs stack top -> bottom
+    //   white = typing/idle, amber = authenticating, lime = ok, red = wrong
+    Rectangle {
+        id: field
+        anchors.right: parent.right
+        anchors.rightMargin: root.width * 0.1
+        anchors.verticalCenter: parent.verticalCenter
+        width: 56
+        height: root.height * 0.6
+        clip: true
+        property bool inverted: false      // wrong-password blink: black bar, red outline + glyphs
+        border.width: inverted ? 2 : 0
+        border.color: Theme.red
+        color: root.lock.status === "auth" ? Theme.amber
+             : root.lock.status === "failed" ? (inverted ? "black" : Theme.red)
+             : root.lock.status === "success" ? Theme.lime
+             : Theme.fg
+        Behavior on color { enabled: root.lock.status !== "failed"; ColorAnimation { duration: 120 } }
 
-            Row {
-                id: promptRow
-                spacing: 12
-
-                Text {
-                    text: "$"
-                    color: Theme.accent
-                    font.family: Theme.font
-                    font.pixelSize: 26
-                    font.weight: Font.Bold
+        Column {
+            anchors.top: parent.top
+            anchors.topMargin: 12
+            anchors.left: parent.left
+            anchors.right: parent.right
+            spacing: 2
+            Repeater {
+                model: glyphs
+                MatrixGlyph {
+                    color: field.inverted ? Theme.red : "black"
+                    width: field.width
+                    horizontalAlignment: Text.AlignHCenter
                 }
-                Row {
-                    spacing: 2
-                    Repeater {
-                        model: glyphs
-                        MatrixGlyph {}
-                    }
-                    Text {
-                        id: cursor
-                        text: "█"
-                        color: Theme.accent
-                        font.family: Theme.font
-                        font.pixelSize: 26
-                        visible: root.lock.status !== "auth"
-                        SequentialAnimation on opacity {
-                            loops: Animation.Infinite
-                            NumberAnimation { to: 0; duration: 1; }
-                            PauseAnimation { duration: 530 }
-                            NumberAnimation { to: 1; duration: 1; }
-                            PauseAnimation { duration: 530 }
-                        }
-                    }
-                }
-            }
-
-            Rectangle {
-                id: line
-                y: promptRow.height + 8
-                width: 380
-                height: 1
-                color: root.lock.status === "failed" ? Theme.red
-                     : root.lock.password !== "" ? Theme.accent : Theme.dim
-            }
-
-            SequentialAnimation {
-                id: shake
-                NumberAnimation { target: prompt; property: "Layout.leftMargin"; to: 22; duration: 50 }
-                NumberAnimation { target: prompt; property: "Layout.leftMargin"; to: -6; duration: 50 }
-                NumberAnimation { target: prompt; property: "Layout.leftMargin"; to: 18; duration: 50 }
-                NumberAnimation { target: prompt; property: "Layout.leftMargin"; to: 8; duration: 50 }
             }
         }
 
-        Text {
-            Layout.topMargin: 10
-            Layout.leftMargin: 8
-            text: root.lock.status === "failed" ? "authentication failed"
-                : root.lock.status === "auth" ? "authenticating…" : " "
-            color: root.lock.status === "failed" ? Theme.red : Theme.dim
-            font.family: Theme.font
-            font.pixelSize: 14
+        // red -> 2 blinks -> red; total = failReset in Lock.qml (1350 ms)
+        SequentialAnimation {
+            id: failBlink
+            PauseAnimation { duration: 300 }
+            PropertyAction { target: field; property: "inverted"; value: true }
+            PauseAnimation { duration: 250 }
+            PropertyAction { target: field; property: "inverted"; value: false }
+            PauseAnimation { duration: 250 }
+            PropertyAction { target: field; property: "inverted"; value: true }
+            PauseAnimation { duration: 250 }
+            PropertyAction { target: field; property: "inverted"; value: false }
         }
     }
 

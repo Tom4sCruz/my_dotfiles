@@ -9,7 +9,7 @@ Text {
 
     function roll() { text = pool[Math.floor(Math.random() * pool.length)]; }
 
-    color: Theme.accent
+    color: Theme.lime
     font.family: Theme.font
     font.pixelSize: 26
     font.weight: Font.Bold

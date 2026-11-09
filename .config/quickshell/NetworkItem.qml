@@ -17,6 +17,11 @@ BarItem {
     tooltip: wifi ? wifi.name + " (" + signal + "%)" : wired ? "Ethernet" : "Disconnected"
     popupOpen: popup.open
 
+    // if the other overlay is open, hovering this item hands over to ours
+    property Item peer: null
+    function closePopup() { popup.open = false; }
+    onHoveredChanged: if (hovered && peer && peer.popupOpen) { peer.closePopup(); popup.open = true; }
+
     onClicked: popup.open = !popup.open
     onRightClicked: { popup.open = false; Quickshell.execDetached(["nm-connection-editor"]); }
 
@@ -28,7 +33,8 @@ BarItem {
         function onCloseAll() { popup.open = false; }
     }
 
-    BarPopup {
+    DockedPopup {
+        side: "right"
         id: popup
         target: net
         targetHovered: net.hovered

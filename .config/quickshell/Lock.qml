@@ -8,24 +8,39 @@ import Quickshell.Services.Pam
 Scope {
     id: lockRoot
     property string password: ""
-    property string status: ""     // "" | "auth" | "failed"
+    property string status: ""     // "" | "auth" | "failed" | "success"
     property bool previewing: false
 
     function activate() {
         password = "";
         status = "";
+        failReset.stop();
         sessionLock.locked = true;
     }
 
     function submit() {
-        if (password === "" || status === "auth") return;
+        if (password === "" || status === "auth" || status === "success" || status === "failed") return;
         if (previewing && !sessionLock.locked) {     // preview: never authenticates
-            status = "failed";
-            password = "";
+            fail();
             return;
         }
         status = "auth";
         pam.start();
+    }
+
+    // wrong password: keep the glyphs while the bar blinks red, then reset
+    function fail() {
+        status = "failed";
+        failReset.restart();
+    }
+
+    Timer {
+        id: failReset
+        interval: 1350                     // matches failBlink in LockContent.qml
+        onTriggered: {
+            lockRoot.password = "";
+            lockRoot.status = "";
+        }
     }
 
     PamContext {
@@ -34,15 +49,21 @@ Scope {
         onResponseRequiredChanged: if (responseRequired) respond(lockRoot.password)
         onCompleted: result => {
             if (result === PamResult.Success) {
-                sessionLock.locked = false;
-                lockRoot.status = "";
+                lockRoot.status = "success";     // show lime briefly, then unlock
+                unlockDelay.restart();
             } else {
-                lockRoot.status = "failed";
+                lockRoot.fail();
             }
-            lockRoot.password = "";
         }
-        onError: {
-            lockRoot.status = "failed";
+        onError: lockRoot.fail()
+    }
+
+    Timer {
+        id: unlockDelay
+        interval: 400
+        onTriggered: {
+            sessionLock.locked = false;
+            lockRoot.status = "";
             lockRoot.password = "";
         }
     }

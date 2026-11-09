@@ -64,13 +64,6 @@ ColumnLayout {
         }
     }
 
-    StyledText {
-        text: "Wi-Fi"
-        font.weight: Font.Bold
-        Layout.leftMargin: 6
-        Layout.bottomMargin: 6
-    }
-
     Repeater {
         model: menu.nets
         ListRow {

@@ -25,7 +25,6 @@ ColumnLayout {
         Layout.preferredWidth: media.artSize
         Layout.preferredHeight: media.artSize
         color: Theme.bgAlt
-        radius: 8
         border.color: Theme.border
         border.width: 1
         clip: true

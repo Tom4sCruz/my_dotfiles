@@ -12,8 +12,7 @@ Rectangle {
 
     implicitWidth: 320
     implicitHeight: 36
-    radius: 6
-    color: active ? Theme.accentSoft : mouse.containsMouse ? Theme.hover : "transparent"
+    color: active ? Theme.fg : mouse.containsMouse ? Theme.hover : "transparent"
 
     RowLayout {
         anchors.fill: parent
@@ -23,13 +22,13 @@ Rectangle {
 
         StyledText {
             text: row.icon
-            color: row.active ? Theme.accent : Theme.fg
+            color: row.active ? Theme.bg : Theme.fg
             Layout.preferredWidth: 18
             horizontalAlignment: Text.AlignHCenter
         }
         StyledText {
             text: row.label
-            color: row.active ? Theme.accent : Theme.fg
+            color: row.active ? Theme.bg : Theme.fg
             elide: Text.ElideRight
             Layout.fillWidth: true
         }
@@ -38,11 +37,6 @@ Rectangle {
             visible: text !== ""
             color: Theme.dim
             font.pixelSize: 12
-        }
-        StyledText {
-            text: "" // check
-            visible: row.active
-            color: Theme.accent
         }
     }
 

@@ -27,7 +27,8 @@ Item {
     }
     onHoveredChanged: if (hovered) openDelay.restart()
 
-    BarPopup {
+    DockedPopup {
+        side: "center"
         id: popup
         target: clock
         targetHovered: clock.hovered

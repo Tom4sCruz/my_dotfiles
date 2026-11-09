@@ -30,8 +30,8 @@ Variants {
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             BluetoothItem {}
-            VolumeItem {}
-            NetworkItem {}
+            VolumeItem { id: vol; peer: net }
+            NetworkItem { id: net; peer: vol }
             BatteryItem {}
         }
     }

@@ -54,7 +54,6 @@ ColumnLayout {
 
     Rectangle {
         color: Theme.bgAlt
-        radius: 8
         border.color: Theme.border
         border.width: 1
         implicitWidth: grid.implicitWidth + 20
@@ -81,16 +80,19 @@ ColumnLayout {
 
             Repeater {
                 model: cal.cells()
-                StyledText {
+                Rectangle {
                     required property var modelData
-                    text: modelData.day
-                    color: modelData.isToday ? Theme.accent : modelData.inMonth ? Theme.fg : Theme.dim
-                    opacity: modelData.inMonth ? 1 : 0.5
-                    font.weight: modelData.isToday ? Font.Black : Font.DemiBold
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
                     Layout.preferredWidth: 30
                     Layout.preferredHeight: 26
+                    color: modelData.isToday ? Theme.fg : "transparent"   // today: white square
+
+                    StyledText {
+                        anchors.centerIn: parent
+                        text: parent.modelData.day
+                        color: parent.modelData.isToday ? Theme.bg : parent.modelData.inMonth ? Theme.fg : Theme.dim
+                        opacity: parent.modelData.inMonth ? 1 : 0.5
+                        font.weight: parent.modelData.isToday ? Font.Black : Font.DemiBold
+                    }
                 }
             }
         }

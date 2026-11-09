@@ -12,6 +12,7 @@ Singleton {
     readonly property bool plugged: !UPower.onBattery
     readonly property bool critical: !plugged && pct <= 10
     readonly property bool low: !plugged && pct <= 20
+    readonly property bool full: plugged && pct >= 90     // time to unplug
 
     readonly property string icon: charging || plugged ? Theme.g(0xf0084)
         : critical ? Theme.g(0xf0083)
