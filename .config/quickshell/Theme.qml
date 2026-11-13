@@ -9,10 +9,11 @@ Singleton {
     readonly property color hover: "#2a2a2a"
     readonly property color fg: "#f2f2f2"
     readonly property color dim: "#6b6b6b"
-    readonly property color lime: "#98f329"      // hyprland active_border; lock screen + battery full
+    readonly property color green: "#1dd79d"      // hyprland active_border; lock screen + battery full
     readonly property color amber: "#ffbf00"     // lock screen: authenticating
     readonly property color buttonBg: "#1c1c1c"  // filled buttons (play/pause); same as bgAlt for now
     readonly property color border: "#3a3a3a"
+    readonly property color panel: "#262626"     // sections inside the system overlay
 
     // bar (from the old waybar style.css)
     readonly property int barHeight: 21

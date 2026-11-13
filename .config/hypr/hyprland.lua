@@ -31,7 +31,7 @@ hl.monitor({
 
 local terminal = "kitty"
 local fileManager = "kitty -e yazi"
-local menu = "wofi --show drun"
+local menu = "qs ipc call launcher toggle || wofi --show drun"
 local browser = "zen-browser"
 
 local custom_sh = "/home/tomas/.local/bin"
@@ -192,7 +192,7 @@ hl.bind(mainMod .. " + L", hl.dsp.workspace.swap_monitors({ monitor1 = "eDP-1", 
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 
 -- [Custom] Execute custom programs
-hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("wlogout -b 1 -r 10 -R 20"))
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("qs ipc call power toggle || wlogout -b 1 -r 10 -R 20"))
 hl.bind("Print", hl.dsp.exec_cmd(custom_sh .. "/screenshot-area"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd(custom_sh .. "/screenshot-all"))
 
@@ -283,8 +283,8 @@ hl.bind(
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+ && qs ipc call osd brightness"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%- && qs ipc call osd brightness"), { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })

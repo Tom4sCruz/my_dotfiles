@@ -18,9 +18,12 @@ BarItem {
     popupOpen: popup.open
 
     // if the other overlay is open, hovering this item hands over to ours
-    property Item peer: null
+    property var peers: []
     function closePopup() { popup.open = false; }
-    onHoveredChanged: if (hovered && peer && peer.popupOpen) { peer.closePopup(); popup.open = true; }
+    onHoveredChanged: {
+        const open = peers.filter(p => p && p.popupOpen);
+        if (hovered && open.length) { open.forEach(p => p.closePopup()); popup.open = true; }
+    }
 
     onClicked: popup.open = !popup.open
     onRightClicked: { popup.open = false; Quickshell.execDetached(["nm-connection-editor"]); }

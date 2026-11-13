@@ -5,6 +5,12 @@
     "keybind" : "s"
 }
 {
+    "label" : "lock",
+    "action" : "qs ipc call lock lock || hyprlock",
+    "text" : "[LOCK]",
+    "keybind" : "l"
+}
+{
     "label" : "reboot",
     "action" : "systemctl reboot",
     "text" : "[REBOOT]",
@@ -16,10 +22,3 @@
     "text" : "[POWER OFF]",
     "keybind" : "p"
 }
-{
-    "label" : "logout",
-    "action" : "loginctl terminate-user $USER",
-    "text" : "[LOGOUT]",
-    "keybind" : "l"
-}
-

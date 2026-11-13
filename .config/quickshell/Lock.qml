@@ -49,7 +49,7 @@ Scope {
         onResponseRequiredChanged: if (responseRequired) respond(lockRoot.password)
         onCompleted: result => {
             if (result === PamResult.Success) {
-                lockRoot.status = "success";     // show lime briefly, then unlock
+                lockRoot.status = "success";     // show green briefly, then unlock
                 unlockDelay.restart();
             } else {
                 lockRoot.fail();

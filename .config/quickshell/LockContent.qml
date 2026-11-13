@@ -70,7 +70,7 @@ Rectangle {
     }
 
     // password field: vertical bar on the right, glyphs stack top -> bottom
-    //   white = typing/idle, amber = authenticating, lime = ok, red = wrong
+    //   white = typing/idle, amber = authenticating, green = ok, red = wrong
     Rectangle {
         id: field
         anchors.right: parent.right
@@ -84,7 +84,7 @@ Rectangle {
         border.color: Theme.red
         color: root.lock.status === "auth" ? Theme.amber
              : root.lock.status === "failed" ? (inverted ? "black" : Theme.red)
-             : root.lock.status === "success" ? Theme.lime
+             : root.lock.status === "success" ? Theme.green
              : Theme.fg
         Behavior on color { enabled: root.lock.status !== "failed"; ColorAnimation { duration: 120 } }
 
